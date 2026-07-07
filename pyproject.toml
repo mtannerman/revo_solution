@@ -1,0 +1,44 @@
+[project]
+name = "interview-env"
+version = "0.1.0"
+description = "Scratch environment for a live coding interview: dataframes, plotting, and helpers."
+requires-python = ">=3.11"
+dependencies = [
+    # --- Core dataframes / numerics ---
+    "pandas>=2.2",
+    "polars>=1.0",
+    "numpy>=1.26",
+    "pyarrow>=16.0", # parquet I/O + zero-copy pandas <-> polars interop
+    # --- Scientific / ML (common interview asks) ---
+    "scipy>=1.13",
+    "scikit-learn>=1.5",
+    "statsmodels>=0.14", # regressions, time series, quick stats
+    # --- Plotting ---
+    "matplotlib>=3.9",
+    "seaborn>=0.13", # nicer statistical plots on top of matplotlib
+    # --- Parallelism / caching ---
+    "joblib>=1.4",
+    # --- Interactive REPL / notebooks (great for live coding) ---
+    "ipython>=8.24",
+    "jupyterlab>=4.2",
+    "ipykernel>=6.29",
+    # --- Handy helpers ---
+    "tqdm>=4.66", # progress bars
+    "rich>=13.7", # pretty printing + readable tracebacks
+    "tabulate>=0.9", # quick ASCII tables
+    "requests>=2.32", # fetch data over HTTP
+    "openpyxl>=3.1", # read/write .xlsx
+    "python-dateutil>=2.9", # flexible date parsing
+    "faker>=25.0", # generate fake data on the fly
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.2",          # in case they ask you to write tests
+    "ruff>=0.5",            # fast lint + format
+]
+
+[tool.uv]
+# Treat this as an environment, not a buildable package — uv just installs deps
+# into .venv instead of trying to build/install the project itself.
+package = false
